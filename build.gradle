@@ -1,0 +1,39 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.0.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.service'
+version = '0.0.1-SNAPSHOT'
+description = 'Order Processing System'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-kafka'
+	implementation 'org.springframework.boot:spring-boot-starter-restclient'
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.apache.kafka:kafka-streams'
+	implementation "org.springframework.data:spring-data-jpa:4.0.2"
+	testImplementation 'org.springframework.boot:spring-boot-starter-kafka-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-restclient-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('bootBuildImage') {
+	runImage = 'paketobuildpacks/ubuntu-noble-run:latest'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
