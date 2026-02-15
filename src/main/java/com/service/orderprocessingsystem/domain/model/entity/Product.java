@@ -14,6 +14,7 @@ public record Product(
     Long ProductId,
     String name,
     String sku,
+    Integer quantity,
     @Column(name = "price_cent")
     Integer priceCent,
     @Column(name = "created_at")

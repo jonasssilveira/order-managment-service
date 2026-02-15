@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Order Processing System
+
+configuration:
+  order-checker:
+    feign:
+      threshold: 3
+      period: 100
+      maxPeriod: 1000
+      url: "http://localhost:8081/v1/order/validation"
+
